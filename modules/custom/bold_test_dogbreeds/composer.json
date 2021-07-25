@@ -1,0 +1,13 @@
+{
+    "name": "bold_test_dogbreeds",
+    "type": "drupal-module",
+    "description": "An module to download images to new Dogbreads saved",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/bold_test_dogbreeds",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/bold_test_dogbreeds",
+        "source": "http://cgit.drupalcode.org/bold_test_dogbreeds",
+    },
+}

@@ -1,0 +1,7 @@
+dogoftheday.settings:
+  path: '/admin/config/select_dog'
+  defaults:
+    _form: '\Drupal\bold_test_configuration\Form\dogSettingsForm'
+    _title: 'url_settings'
+  requirements:
+    _permission: 'administer site configuration'

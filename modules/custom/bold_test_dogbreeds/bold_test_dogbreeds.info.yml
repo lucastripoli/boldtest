@@ -1,0 +1,5 @@
+name: 'bold-test_DogBreeds'
+type: module
+description: 'An module to download images to new Dogbreads saved'
+core: 8.x
+package: 'Custom'

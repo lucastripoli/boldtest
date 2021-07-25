@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains bold_test_configuration.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function bold_test_configuration_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bold_test_configuration module.
+    case 'help.page.bold_test_configuration':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A configuration module to show in a block an specific dog breed') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bold_test_configuration_theme() {
+  return [
+    'dog_of_day_block' => [
+      'variables' => [
+        'content' => NULL,
+        'image'=> false,
+      ],
+      'render element' => 'children',
+    ],
+  ];
+}

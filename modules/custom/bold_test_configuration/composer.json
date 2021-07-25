@@ -1,0 +1,13 @@
+{
+    "name": "bold_test_configuration",
+    "type": "drupal-module",
+    "description": "A configuration module to show in a block an specific dog breed",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/bold_test_configuration",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/bold_test_configuration",
+        "source": "http://cgit.drupalcode.org/bold_test_configuration",
+    },
+}

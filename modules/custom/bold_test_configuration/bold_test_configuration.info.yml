@@ -1,0 +1,5 @@
+name: 'bold_test_configuration'
+type: module
+description: 'A configuration module to show in a block an specific dog breed'
+core: 8.x
+package: 'Custom'

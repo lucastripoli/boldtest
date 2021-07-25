@@ -1,0 +1,7 @@
+urlconfigurations.settings:
+  path: '/admin/config/get_url'
+  defaults:
+    _form: '\Drupal\bold_test_dogbreeds\Form\urlSettingsForm'
+    _title: 'url_settings'
+  requirements:
+    _permission: 'administer site configuration'

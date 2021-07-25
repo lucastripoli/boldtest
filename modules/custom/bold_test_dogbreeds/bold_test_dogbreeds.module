@@ -1,0 +1,86 @@
+<?php
+
+/**
+ * @file
+ * Contains bold_test_dogbreeds.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_help().
+ */
+function bold_test_dogbreeds_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bold_test_dogbreeds module.
+    case 'help.page.bold_test_dogbreeds':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('An module to download images to new Dogbreads saved') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bold_test_dogbreeds_theme() {
+  return [
+    'bold_test_dogbreeds' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+
+function bold_test_dogbreeds_dog_breeds_presave(Drupal\Core\Entity\EntityInterface $entity)
+{
+  dsm('asd');
+}
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * poderia ter sido utilizado o presave da entidade correta.
+ */
+function bold_test_dogbreeds_entity_presave(Drupal\Core\Entity\EntityInterface $entity){
+  $entityArray = $entity->toArray();
+
+  if(!empty($entityArray['type'])){
+    if($entityArray['type'][0]['target_id'] == "dog_breeds") {
+
+      $config = \Drupal::config('dogbreeds.settings');
+      $breed = $entity->get('field_slug')->getString();
+
+      $url = $config->get('url_get_image');
+      $url = str_replace("breed_name", $breed, $url);
+
+      $client = \Drupal::httpClient();
+      $request = $client->get($url);
+      $response = $request->getBody();
+
+      $file_path = json_decode($response->__toString(), true);
+
+      if(!empty($file_path['message'])){
+        $path_image = pathinfo($file_path['message']);
+        $data_image = file_get_contents($file_path['message']);
+
+        $file = null;
+        try {
+
+          $file = file_save_data($data_image, "public://" . $path_image['filename'] . "." . $path_image['extension']);
+
+        } catch (Exception $ex) {
+          //todo mensagem de erro
+        }
+        if(!empty($file)){
+          $entity->get('field_dog_image')->setValue($file);
+        }
+      }
+    }
+  }
+}
